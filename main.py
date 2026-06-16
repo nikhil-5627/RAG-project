@@ -1,18 +1,12 @@
 from src.pdf_loader import load_pdf
 from src.chunker import create_chunks
+from src.embedder import create_embeddings
 
 pages = load_pdf("data/sample.pdf")
 
-chunks = create_chunks(
-    pages,
-    chunk_size=500,
-    overlap=50
-)
+chunks = create_chunks(pages)
 
-print(f"Total Chunks: {len(chunks)}")
+chunks = create_embeddings(chunks)
 
-for chunk in chunks[:5]:
-    print("\n================")
-    print(f"Chunk ID: {chunk['chunk_id']}")
-    print(f"Page: {chunk['page_number']}")
-    print(chunk["text"])
+print(chunks[0]["embedding"][:10])
+print(len(chunks[0]["embedding"]))

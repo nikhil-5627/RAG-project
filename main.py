@@ -1,9 +1,18 @@
 from src.pdf_loader import load_pdf
+from src.chunker import create_chunks
 
-pdf_path = "data/sample.pdf"
+pages = load_pdf("data/sample.pdf")
 
-pages = load_pdf(pdf_path)
+chunks = create_chunks(
+    pages,
+    chunk_size=500,
+    overlap=50
+)
 
-for page in pages:
-    print(f"\n--- Page {page['page_number']} ---")
-    print(page["text"][:500])
+print(f"Total Chunks: {len(chunks)}")
+
+for chunk in chunks[:5]:
+    print("\n================")
+    print(f"Chunk ID: {chunk['chunk_id']}")
+    print(f"Page: {chunk['page_number']}")
+    print(chunk["text"])

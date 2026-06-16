@@ -1,1 +1,3 @@
 - Adding required libraries involves downloading packages to your system and importing them into your code
+- newfeature/pdfloader in src file and added the data set from where pdf text is extracts.
+- newfeature/chunker in src file and created a chunks of the pdf text where easy to retrive the answers from the questions .
